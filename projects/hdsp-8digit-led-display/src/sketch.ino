@@ -57,7 +57,7 @@ int defPinArray[] = {RST,FL,A_0,A_1,A_2,A_3,A_4,WR,CE,RD,D_0,D_1,D_2,D_3,D_4,D_5
 void setup()
 {
     //setup the pins in defPinArray
-    for(int i = 0, i < sizeof(defPinArray), i++){
+    for(int i = 0; i < sizeof(defPinArray); i++){
 	pinMode(defPinArray[i], OUTPUT);
     }
 
@@ -80,7 +80,23 @@ void reset(){
 
 }
 
+void location(byte a){
+    //address location in a RAM
+    bits3[] = {A_0,A_2,A_3};
+    for (byte y=0; y<2; ++y){
+	if (a & (1<<y)){
+	    //if it has a set val (1)
+            digitalWrite(bits[y], HIGH);
+	}
+	else{
+	    digitalWrite(bits[y], LOW);
+	}
+    }
+}
+
 void flash_ram(){
+
+
 
 }
 
