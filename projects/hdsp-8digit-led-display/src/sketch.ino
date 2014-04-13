@@ -36,20 +36,56 @@ CE input is low.
 */
 
 //DATA BUS
-
+//the Data bus is used to reat from or write to the display
 #define D_0 5 //(20)
 #define D_1 6 //(21)
 #define D_2 7 //(25)
+#define D_3 13 //(26)
+#define D_4 12 //(27)
+#define D_5 11 //(28)
+#define D_6 10 //(29)
+#define D_7 9 //(30)
 
 
 //#sketch to drive a HDSP 8 character led display
 //#
 
+//array of the defined pin names/numbers
+int defPinArray[] = {RST,FL,A_0,A_1,A_2,A_3,A_4,WR,CE,RD,D_0,D_1,D_2,D_3,D_4,D_5,D_6,D_7};
+
 
 void setup()
 {
+    //setup the pins in defPinArray
+    for(int i = 0, i < sizeof(defPinArray), i++){
+	pinMode(defPinArray[i], OUTPUT);
+    }
+
 }
 
 void loop()
 {
+
+
+
+}
+
+void reset(){
+    //resets chip
+    digitalWrite(RST, LOW);
+    digitalWrite(CE, HIGH);
+    delay(300);
+    digitalWrite(RST, HIGH);
+    digitalWrite(CE, LOW);
+
+}
+
+void flash_ram(){
+
+}
+
+void CE_switch(){
+    //switches the CE pin after a read/write cycle
+    digitalWrite(CE, HIGH);
+    digitalWrite(CE, LOW);
 }
