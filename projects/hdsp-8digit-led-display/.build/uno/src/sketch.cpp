@@ -71,16 +71,20 @@ void setup()
 	pinMode(defPinArray[i], OUTPUT);
     }
 
-//stuff to go once to test
 reset();
-write_char('A', 0);
-CE_switch();
+
+//stuff to go once to test
+
+//write_char('H', 3);
+//CE_switch();
 
 }
 
 void loop()
 {
-
+//reset();
+write_char(B00010001, 0);
+CE_switch();
 
 
 }
@@ -98,7 +102,8 @@ void reset(){
 void location(byte a){
     //address location in a RAM
     // 0 - 7 from byte a
-    bits3[] = {A_0,A_2,A_3};
+    byte bits3[] = {A_0,A_2,A_3};
+    //byte bits3[] = {A_3,A_2,A_1};
     for (byte y=0; y<2; ++y){
 	if (a & (1<<y)){
 	    //if it has a set val (1)
@@ -125,8 +130,8 @@ void write_char(char c, byte loc){
     //write D_7 low to use ascii code
     digitalWrite(D_7, LOW);    
 
-    bits7[] = {D_0,D_1,D_3,D_4,D_5,D_6};
-
+    //byte bits7[] = {D_6,D_5,D_4,D_3,D_2,D_1,D_0};
+    byte bits7[] = {D_0,D_1,D_2,D_3,D_4,D_5,D_6};
     for (byte d=0; d<6; ++d){
         
         if (c & (1<<d)){
