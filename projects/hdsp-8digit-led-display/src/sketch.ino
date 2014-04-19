@@ -82,21 +82,55 @@ void reset(){
 
 void location(byte a){
     //address location in a RAM
+    // 0 - 7 from byte a
     bits3[] = {A_0,A_2,A_3};
     for (byte y=0; y<2; ++y){
 	if (a & (1<<y)){
 	    //if it has a set val (1)
-            digitalWrite(bits[y], HIGH);
+            digitalWrite(bits3[y], HIGH);
 	}
 	else{
-	    digitalWrite(bits[y], LOW);
+	    digitalWrite(bits3[y], LOW);
 	}
     }
 }
 
+void write_char(char c, byte loc){
+
+    //write pin low to activate
+    digitalWrite(WR, LOW);
+
+    //put FL A_4 and A_3 HIGH
+    digitalWrite(FL, HIGH);
+    digitalWrite(A_4, HIGH);
+    digitalWrite(A_3, HIGH);
+
+    location(loc);
+    
+    //write D_7 low to use ascii code
+    digitalWrite(D_7, LOW);    
+
+    bits7[] = {D_0,D_1,D_3,D_4,D_5,D_6};
+
+    for (byte d=0; d<6; ++d){
+        
+        if (c & (1<<d)){
+            digitalWrite(bits7[d], HIGH);
+        } else {
+            digitalWrite(bits7[d], LOW);
+        }
+
+    }
+
+
+}
+
 void flash_ram(){
 
+    //make FL low
+    digitalWrite(FL, LOW);
 
+    //NOTE: incomplete
 
 }
 
