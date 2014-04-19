@@ -83,7 +83,7 @@ reset();
 void loop()
 {
 //reset();
-write_char(B00010001, 0);
+write_char(B01000101, 0);
 CE_switch();
 
 
@@ -132,7 +132,7 @@ void write_char(char c, byte loc){
 
     //byte bits7[] = {D_6,D_5,D_4,D_3,D_2,D_1,D_0};
     byte bits7[] = {D_0,D_1,D_2,D_3,D_4,D_5,D_6};
-    for (byte d=0; d<6; ++d){
+    for (byte d=0; d<7; ++d){
         
         if (c & (1<<d)){
             digitalWrite(bits7[d], HIGH);
