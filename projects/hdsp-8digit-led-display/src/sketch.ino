@@ -61,6 +61,11 @@ void setup()
 	pinMode(defPinArray[i], OUTPUT);
     }
 
+//stuff to go once to test
+reset();
+write_char('A', 0);
+CE_switch();
+
 }
 
 void loop()
