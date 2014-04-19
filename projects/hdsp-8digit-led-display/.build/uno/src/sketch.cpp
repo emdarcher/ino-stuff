@@ -1,3 +1,13 @@
+#include <Arduino.h>
+
+void setup();
+void loop();
+void reset();
+void location(byte a);
+void write_char(char c, byte loc);
+void flash_ram();
+void CE_switch();
+#line 1 "src/sketch.ino"
 #define RST 8 //RESET pin (1), initializes the display
 #define FL A5 /*FLASH pin (2),
 low indicates an access to the Flash RAM and is
@@ -88,7 +98,7 @@ void reset(){
 void location(byte a){
     //address location in a RAM
     // 0 - 7 from byte a
-    byte bits3[] = {A_0,A_2,A_3};
+    bits3[] = {A_0,A_2,A_3};
     for (byte y=0; y<2; ++y){
 	if (a & (1<<y)){
 	    //if it has a set val (1)
@@ -115,7 +125,7 @@ void write_char(char c, byte loc){
     //write D_7 low to use ascii code
     digitalWrite(D_7, LOW);    
 
-    byte bits7[] = {D_0,D_1,D_3,D_4,D_5,D_6};
+    bits7[] = {D_0,D_1,D_3,D_4,D_5,D_6};
 
     for (byte d=0; d<6; ++d){
         
